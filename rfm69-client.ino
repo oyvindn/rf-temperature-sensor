@@ -12,13 +12,13 @@
 
 #define RF_INTERRUPT_GPIO 2
 #define RF_FREQUENCY 433.00
-#define RF_SERVER_ADDRESS 1
-#define RF_CLIENT_ADDRESS 2
+#define RF_GATEWAY_ADDRESS 1
+#define RF_NODE_ADDRESS 2
 
 #define SLEEP_CYCLES 2
 
 RH_RF69 rf69Driver(SS, RF_INTERRUPT_GPIO);
-RHReliableDatagram radioManager(rf69Driver, RF_CLIENT_ADDRESS);
+RHReliableDatagram radioManager(rf69Driver, RF_NODE_ADDRESS);
 
 OneWire oneWire(DS18B20_TEMPERATURE_SENSOR_GPIO);
 DallasTemperature temperatureSensors(&oneWire);
