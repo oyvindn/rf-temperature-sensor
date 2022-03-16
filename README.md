@@ -41,7 +41,7 @@ Download the [ATmega328 on a breadboard bootloader](https://www.arduino.cc/en/up
 Install the library dependencies listet above.
 
 ### Compile sketch
-`arduino-cli compile -b breadboard:avr:atmega328bb -v rfm69-client`
+`arduino-cli compile -b breadboard:avr:atmega328bb rfm69-client`
 
 ### Upload sketch to ATmega328P using e.g. a FTD-232R-3V3 USB to TTL Serial Cable:
 `arduino-cli upload -p /dev/cu.usbserial-FTC0DLEV -b breadboard:avr:atmega328bb -v rfm69-client`

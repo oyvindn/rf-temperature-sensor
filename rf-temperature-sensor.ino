@@ -77,7 +77,7 @@ void transmit(float temperature, long vcc)
   sprintf(message, "%s;%d", tempStr, vcc);
   Serial.print("Sending message: ");
   Serial.println(message);
-  if (!radioManager.sendtoWait((uint8_t *)message, sizeof(message), RF_SERVER_ADDRESS))
+  if (!radioManager.sendtoWait((uint8_t *)message, sizeof(message), RF_GATEWAY_ADDRESS))
   {
     Serial.println("Transmission failed");
   }
