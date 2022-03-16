@@ -93,7 +93,7 @@ void powerDown(int times)
     Serial.print(i + 1);
     Serial.print("/");
     Serial.println(times);
-    delay(5);
+    Serial.flush();
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
 }
