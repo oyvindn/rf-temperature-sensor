@@ -15,7 +15,7 @@
 #define RF_GATEWAY_ADDRESS 1
 #define RF_NODE_ADDRESS 2
 
-#define SLEEP_CYCLES 2
+#define SLEEP_CYCLES 38 // times 8 seconds power down
 
 RH_RF69 rf69Driver(SS, RF_INTERRUPT_GPIO);
 RHReliableDatagram radioManager(rf69Driver, RF_NODE_ADDRESS);
