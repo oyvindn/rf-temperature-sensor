@@ -75,12 +75,7 @@ void transmit(float temperature, long vcc)
   dtostrf(temperature, 1, 2, tempStr);
   char message[40];
   sprintf(message, "%s;%d", tempStr, vcc);
-  Serial.print("Sending message: ");
-  Serial.println(message);
-  if (!radioManager.sendtoWait((uint8_t *)message, sizeof(message), RF_GATEWAY_ADDRESS))
-  {
-    Serial.println("Transmission failed");
-  }
+  radioManager.sendtoWait((uint8_t *)message, sizeof(message), RF_GATEWAY_ADDRESS);
 }
 
 void powerDown(int times)
@@ -89,11 +84,6 @@ void powerDown(int times)
 
   for (int i = 0; i < times; i++)
   {
-    Serial.print("Powering down in 8s ");
-    Serial.print(i + 1);
-    Serial.print("/");
-    Serial.println(times);
-    Serial.flush();
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
 }
