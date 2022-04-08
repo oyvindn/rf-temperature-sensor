@@ -53,16 +53,34 @@ void setup()
 
 void loop()
 {
+  char message[50];
+
+  long vcc = readVcc();
+
 #if USE_BME280
   bme.takeForcedMeasurement();
   float temperature = bme.readTemperature();
-  float pressure = bme.readPressure() / 100.0F;
   float humidity = bme.readHumidity();
+  float pressure = bme.readPressure() / 100.0F;
+
+  char temperatureStr[10];
+  dtostrf(temperature, 1, 2, temperatureStr);
+
+  char humidityStr[10];
+  dtostrf(humidity, 1, 0, humidityStr);
+
+  char pressureStr[10];
+  dtostrf(pressure, 1, 0, pressureStr);
+
+  sprintf(message, "THPV;%s;%s;%s;%d", temperatureStr, humidityStr, pressureStr, vcc);
 #else
   float temperature = readDS18B20Temperature();
+  char temperatureStr[10];
+  dtostrf(temperature, 1, 2, temperatureStr);
+  sprintf(message, "TV;%s;%d", temperatureStr, vcc);
 #endif
-  long vcc = readVcc();
-  transmit(temperature, vcc);
+
+  radioManager.sendtoWait((uint8_t *)message, sizeof(message), RF_GATEWAY_ADDRESS);
   powerDown(SLEEP_CYCLES);
 }
 
@@ -94,15 +112,6 @@ long readVcc()
   // Vbat = 1100mV * 1024 / ADC value
   result = 1125300L / result; // Calculate Vcc (in mV); 1125300 = 1.1*1023*1000
   return result;              // Vcc in millivolts
-}
-
-void transmit(float temperature, long vcc)
-{
-  char tempStr[10];
-  dtostrf(temperature, 1, 2, tempStr);
-  char message[40];
-  sprintf(message, "%s;%d", tempStr, vcc);
-  radioManager.sendtoWait((uint8_t *)message, sizeof(message), RF_GATEWAY_ADDRESS);
 }
 
 void powerDown(int times)
