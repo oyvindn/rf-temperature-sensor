@@ -13,7 +13,7 @@ In order to save battery the ATmega328P is set to use its internal 8 MHz RC osci
 ## Hardware
 
 * ATmega328P
-* HopeRF RFM69CW 13DBM 433Mhz RF Transceiver Module
+* HopeRF RFM69CW 13DBM 868Mhz RF Transceiver Module
 * DS18B20 Digital temperature sensor
 
 
