@@ -139,7 +139,8 @@ void initRadio()
   if (rf69Driver.setFrequency(RF_FREQUENCY))
   {
     Serial.print("[RFM69] Frequency set to ");
-    Serial.println(RF_FREQUENCY);
+    Serial.print(RF_FREQUENCY);
+    Serial.println("MHz");
   }
   else
   {
