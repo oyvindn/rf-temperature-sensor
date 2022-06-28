@@ -6,6 +6,7 @@
 #include <RHReliableDatagram.h>
 
 #define USE_BME280 true
+
 #if USE_BME280
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
@@ -20,7 +21,7 @@
 #define DS18B20_TEMPERATURE_SENSOR_PIN 9
 
 #define RF_INTERRUPT_PIN 2
-#define RF_FREQUENCY 433.00
+#define RF_FREQUENCY 868.00
 #define RF_GATEWAY_ADDRESS 1
 #define RF_NODE_ADDRESS 2
 
